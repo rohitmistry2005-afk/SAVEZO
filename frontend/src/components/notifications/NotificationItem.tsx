@@ -33,33 +33,34 @@ export default function NotificationItem({
       case "warning":
         return "bg-yellow-500/20";
       default:
-        return "bg-gray-500/20";
+        return "bg-muted";
     }
   };
 
   return (
-    <div className="flex items-start gap-3 p-4 hover:bg-white/5 transition border-b border-gray-800">
-      
-      {/* Icon */}
+    <div className="flex items-start gap-3 p-4 hover:bg-muted transition border-b border-border">
+
+      {/* ICON */}
       <div
         className={`w-10 h-10 rounded-full flex items-center justify-center text-lg ${getBg()}`}
       >
         {getIcon()}
       </div>
 
-      {/* Content */}
+      {/* CONTENT */}
       <div className="flex-1">
-        <p className="text-sm text-gray-200 leading-relaxed">
+        <p className="text-sm text-foreground leading-relaxed">
           {notification.message}
         </p>
-        <p className="text-xs text-gray-400 mt-1">
+
+        <p className="text-xs text-muted-foreground mt-1">
           {notification.time}
         </p>
       </div>
 
-      {/* Unread dot */}
+      {/* UNREAD DOT */}
       {!notification.read && (
-        <div className="w-2 h-2 rounded-full bg-blue-500 mt-2" />
+        <div className="w-2 h-2 rounded-full bg-primary mt-2" />
       )}
     </div>
   );
