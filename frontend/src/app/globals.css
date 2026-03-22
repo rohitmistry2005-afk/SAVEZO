@@ -1,19 +1,26 @@
-/* src/app/globals.css */
-
+/* ===== TAILWIND BASE ===== */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ===== BASE RESET ===== */
 * {
-  @apply border-border;
+  box-sizing: border-box;
+  border-color: hsl(var(--border));
 }
 
+html,
 body {
-  @apply bg-background text-foreground;
   margin: 0;
+  padding: 0;
   font-family: var(--font-inter), system-ui, sans-serif;
-  transition: background 0.3s, color 0.3s;
+
+  /* ✅ THEME COLORS (CRITICAL FIX) */
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+
+  /* ✅ SMOOTH TRANSITION */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ===== THEME VARIABLES ===== */
@@ -46,7 +53,7 @@ body {
     --radius: 0.75rem;
   }
 
-  /* 🌙 DARK MODE (Savezo style) */
+  /* 🌙 DARK MODE */
   .dark {
     --background: 222 47% 11%;       /* #080c14 */
     --foreground: 210 40% 98%;
@@ -70,9 +77,29 @@ body {
     --input: 222 20% 20%;
     --ring: 221 83% 53%;
   }
+
+  /* ===== APPLY VARIABLES TO TAILWIND ===== */
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
-/* ===== SMOOTH THEME TRANSITION ===== */
-html {
-  transition: background 0.3s ease, color 0.3s ease;
+/* ===== SCROLLBAR (OPTIONAL UI POLISH) ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* ===== SELECTION COLOR ===== */
+::selection {
+  background: hsl(var(--primary));
+  color: white;
 }

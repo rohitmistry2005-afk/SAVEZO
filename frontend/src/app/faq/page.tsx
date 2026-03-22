@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { ChevronDown, MessageCircle } from "lucide-react"
-import Link from "next/link" // ✅ ADDED
+import Link from "next/link"
 
 const faqs = [
   {
@@ -35,18 +35,18 @@ export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#080c14] via-[#0d1320] to-[#0f172a] text-white px-6 py-20">
+    <div className="min-h-screen bg-background text-foreground px-6 py-20">
 
       {/* HEADER */}
       <div className="text-center mb-16">
         <h1 className="text-5xl font-extrabold mb-4">
           Frequently Asked{" "}
-          <span className="bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text">
+          <span className="bg-gradient-to-r from-blue-500 to-cyan-400 text-transparent bg-clip-text">
             Questions
           </span>
         </h1>
 
-        <p className="text-gray-400 text-lg">
+        <p className="text-muted-foreground text-lg">
           Learn more about how Savezo keeps your community safe
         </p>
 
@@ -59,17 +59,27 @@ export default function FAQPage() {
           const isOpen = openIndex === i
 
           return (
-            <div key={i} className="bg-white/5 border border-white/10 rounded-2xl">
+            <div
+              key={i}
+              className="bg-card border border-border rounded-2xl shadow-sm"
+            >
               <button
                 onClick={() => setOpenIndex(isOpen ? null : i)}
                 className="w-full flex justify-between px-6 py-5"
               >
-                <span className="text-lg font-semibold">{faq.q}</span>
-                <ChevronDown className={isOpen ? "rotate-180 text-blue-400" : ""} />
+                <span className="text-lg font-semibold text-foreground">
+                  {faq.q}
+                </span>
+
+                <ChevronDown
+                  className={`transition-transform ${
+                    isOpen ? "rotate-180 text-primary" : "text-muted-foreground"
+                  }`}
+                />
               </button>
 
               {isOpen && (
-                <div className="px-6 pb-5 text-gray-400 text-sm">
+                <div className="px-6 pb-5 text-muted-foreground text-sm">
                   {faq.a}
                 </div>
               )}
@@ -80,9 +90,9 @@ export default function FAQPage() {
 
       {/* CONTACT SUPPORT */}
       <div className="max-w-3xl mx-auto mt-16 text-center">
-        <div className="rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 p-10 border border-white/10">
+        <div className="rounded-2xl bg-card border border-border p-10 shadow-sm">
 
-          <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
+          <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary flex items-center justify-center text-white">
             <MessageCircle />
           </div>
 
@@ -90,13 +100,12 @@ export default function FAQPage() {
             Still have questions?
           </h2>
 
-          <p className="text-gray-300 mb-6">
+          <p className="text-muted-foreground mb-6">
             We're here to help! Our support team is ready to assist you.
           </p>
 
-          {/* ✅ FIXED BUTTON */}
           <Link href="/support">
-            <button className="px-8 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-semibold hover:opacity-90 transition">
+            <button className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold hover:opacity-90 transition">
               Contact Support
             </button>
           </Link>

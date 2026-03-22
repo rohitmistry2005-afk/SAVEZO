@@ -1,8 +1,11 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation" // ✅ ADD THIS
 
 export function Hero() {
+  const router = useRouter() // ✅ INIT ROUTER
+
   return (
     <section className="relative min-h-[calc(100vh-68px)] flex items-center justify-center px-6 text-center overflow-hidden bg-background text-foreground transition-colors duration-300">
 
@@ -45,16 +48,20 @@ export function Hero() {
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
 
+          {/* ✅ GET STARTED */}
           <Button
             size="lg"
+            onClick={() => router.push("/dashboard")}
             className="bg-accent-gradient text-white hover:opacity-90 px-8 py-6 rounded-xl"
           >
             Get Started →
           </Button>
 
+          {/* ✅ TRY AI DETECTION */}
           <Button
             size="lg"
             variant="outline"
+            onClick={() => router.push("/detection")}
             className="border-border text-foreground hover:bg-muted px-8 py-6 rounded-xl"
           >
             Try AI Detection
